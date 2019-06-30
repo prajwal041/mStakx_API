@@ -1,0 +1,97 @@
+Pre-Requirements for Application:
+- download & install Python 3.5+ from official site
+- check pip version: pip --version
+- download & install PostgreSQL from official site
+- set the username & password as in the settings.py (check the databases section for username, password, DB name)
+	DB name: postgres
+	user: prajwal
+	password: Prajw@l123
+	
+- Run the Dockerfile to meet the requirements
+
+Assumptions made:
+- RDBMS at the backend(Postgresql)
+- Django, a python web framework is used for this application. It's a MVT architecture widely used to create RESTful applications.
+
+
+Database setup in app:
+change the directory to under mstakx & this is the file system structure in Django.
+
+├── mStakx
+├   myapp
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── admin.py
+│   ├── models.py
+│   ├── serialaizers.py
+│   ├── tests.py
+│   ├── urls.py
+│   └── views.py
+│   
+│   ├── mStakx
+│   │   ├── __init__.py
+│   │   ├── settings.py
+│   │   ├── urls.py
+│   │   └── wsgi.py
+│   └── manage.py
+└── requirements.txt
+
+$ python manage.py makemigrations myapp
+$ python manage.py migrate
+
+this will create tables & performs all migrations in the database postgres through django models
+
+Schema:
+Books table:
+postgres=# \d myapp_books;
+ url       | character varying(255)   |           | not null |
+ name      | character varying(255)   |           |          |
+ isbn      | character varying(255)   |           |          |
+ authors   | character varying(255)[] |           | not null |
+ nopages   | integer                  |           |          |
+ publisher | character varying(255)   |           |          |
+ country   | character varying(255)   |           |          |
+ released  | character varying(255)   |           |          |
+
+Testing the application on local server:
+$ python manage.py runserver 8080
+
+The application will be running on localhost with default port no 8080
+
+
+REST Endpoints
+Pre Requisite: use postman to view pretty json
+Load the data to DB
+API: http://localhost:8080/api/books_load
+
+List all books:
+GET method:	http://localhost:8000/api/v1/books
+
+Create book entry:
+POST method: http://localhost:8000/api/v1/books
+
+List perticular book:
+GET method: http://localhost:8000/api/v1/external_books/<id>
+
+Pending Task:
+PATCH method http://localhost:8000/api/v1/books/<id>
+
+DELETE method: http://localhost:8000/api/v1/books/<id>
+
+
+
+Developer contact:
+For more info reach out,
+Prajwal Shetty
+prajwal041@gmail.com
+github: https://github.com/prajwal041
+
+
+
+
+
+
+
